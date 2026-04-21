@@ -1,5 +1,7 @@
-<h1 class=" h-1 m-2 p-2 " >Welcome to SvelteKit </h1>
+<script lang="ts">
+	import Accordion from '../components/molecules/accordion/Accordion.svelte';
+</script>
 
-<br/>
-
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<div class="p-4">
+	<Accordion />
+</div>
