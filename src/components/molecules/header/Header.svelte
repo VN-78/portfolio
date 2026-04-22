@@ -10,15 +10,15 @@
 	let scrollProgress = $derived(Math.min(scrollY / 150, 1));
 
 	// 2. Map the progress to our specific layout values
-	// Width: 100% down to 90%
-	let navWidth = $derived(100 - 10 * scrollProgress);
+	// Width: 100% down to 60%
+	let navWidth = $derived(100 - 40 * scrollProgress);
 	// Top Margin: 0px down to 16px
 	let navTop = $derived(16 * scrollProgress);
 	// Border Radius: 0px up to 9999px (pill shape)
 	let navRadius = $derived(9999 * scrollProgress);
 
 	// We keep a boolean for things that SHOULD snap, like the green dot
-	// let isScrolled = $derived(scrollY > 50);
+	let isScrolled = $derived(scrollY > 50);
 
 	let activeSection = $state('home'); // NEW: Track the active section
 
@@ -64,71 +64,79 @@
         max-md:hidden
     "
 >
-	<nav
-		class="
+	<div class="mx-auto flex w-full max-w-7xl items-center justify-between px-4 md:px-6 lg:px-8">
+		<nav
+			class="
             pointer-events-auto mx-auto flex h-14 items-center
-            overflow-hidden border-border-subtle px-8
-            shadow-lg backdrop-blur-md
+            overflow-hidden px-8
+			transition-all duration-75 ease-linear
+			{isScrolled
+				? 'border-border-subtle bg-surface-component/80 shadow-lg backdrop-blur-md'
+				: 'border-transparent bg-surface-main shadow-none'}
         "
-		style="
+			// border-border-subtle  shadow-lg backdrop-blur-3xl
+			style="
             width: {navWidth}%; 
             margin-top: {navTop}px; 
             border-radius: {navRadius}px;
-            background-color: color-mix(in srgb, var(--bg-component) {50 +
-			30 * scrollProgress}%, transparent);
-            border-width: {scrollProgress}px;
-            border-bottom-width: {1 - scrollProgress}px;
+
+            
         "
-	>
-		<div class="flex flex-1 items-center justify-start">
-			<span class="text-xl font-bold text-content-main">VN</span>
-		</div>
+			//  border-bottom-width: {1 - scrollProgress}px;  border-width: {scrollProgress}px;
+			//  background-color: color-mix(in srgb, var(--bg-component) {50 + 30 * scrollProgress}%, transparent);
+		>
+			<div class="flex flex-1 items-center justify-start">
+				<span class="text-xl font-bold text-content-main">VN</span>
+			</div>
 
-		<div class="flex shrink-0 items-center justify-center gap-6">
-			<a
-				href="#home"
-				class="group flex items-center gap-2 transition-colors hover:text-accent-primary
+			<div class="flex shrink-0 items-center justify-center gap-6">
+				<a
+					href="#home"
+					class="group flex items-center gap-2 transition-colors hover:text-accent-primary
                 {activeSection === 'home' ? 'text-content-main' : 'text-content-sub'}"
-			>
-				<span
-					class="h-2 w-2 rounded-full bg-accent-primary transition-transform duration-300
+				>
+
+				#TODO: convert these dots to underline with animations 
+					<span
+						class="h-2 w-2 rounded-full bg-accent-primary transition-transform duration-300
                     {activeSection === 'home' ? 'w-2 scale-100' : 'w-0 scale-0'}"
-				>
-				</span>
-				Home
-			</a>
+					>
+					</span>
+					Home
+				</a>
 
-			<a
-				href="#about"
-				class="flex items-center gap-2 transition-colors hover:text-accent-primary
+				<a
+					href="#about"
+					class="flex items-center gap-2 transition-colors hover:text-accent-primary
                 {activeSection === 'about' ? 'text-content-main' : 'text-content-sub'}"
-			>
-				<span
-					class="h-2 w-2 rounded-full bg-accent-primary transition-transform duration-300
+				>
+					<span
+						class="h-2 w-2 rounded-full bg-accent-primary transition-transform duration-300
                     {activeSection === 'about' ? 'w-2 scale-100' : 'w-0 scale-0'}"
-				>
-				</span>
-				About
-			</a>
+					>
+					</span>
+					About
+				</a>
 
-			<a
-				href="#projects"
-				class="flex items-center gap-2 transition-colors hover:text-accent-primary
+				<a
+					href="#projects"
+					class="flex items-center gap-2 transition-colors hover:text-accent-primary
                 {activeSection === 'projects' ? 'text-content-main' : 'text-content-sub'}"
-			>
-				<span
-					class="h-2 w-2 rounded-full bg-accent-primary transition-transform duration-300
-                    {activeSection === 'projects' ? 'w-2 scale-100' : 'w-0 scale-0'}"
 				>
-				</span>
-				Projects
-			</a>
-		</div>
+					<span
+						class="h-2 w-2 rounded-full bg-accent-primary transition-transform duration-300
+                    {activeSection === 'projects' ? 'w-2 scale-100' : 'w-0 scale-0'}"
+					>
+					</span>
+					Projects
+				</a>
+			</div>
 
-		<div class="flex flex-1 items-center justify-end">
-			<ThemeToggle />
-		</div>
-	</nav>
+			<div class="flex flex-1 items-center justify-end">
+				<ThemeToggle />
+			</div>
+		</nav>
+	</div>
 </header>
 
 <header
@@ -138,7 +146,7 @@
 	<nav
 		class="
             pointer-events-auto mx-auto flex h-12 items-center
-            overflow-hidden border-border-subtle px-8
+            overflow-hidden border-border-subtle px-4
             shadow-lg backdrop-blur-md"
 	>
 		<div class="flex flex-1 items-center justify-start">
