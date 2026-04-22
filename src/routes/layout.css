@@ -40,14 +40,16 @@
 @layer base {
 	/* Default: Light Mode (Inverted values) */
 	:root {
-		--bg-main: hsl(0 0% 95%);
-		--bg-component: hsl(0 0% 85%);
-		--bg-highlight: hsl(0 0% 75%);
+		/* Notice the Hue is 255, and Saturation is 5% instead of 0% */
+		--bg-main: hsl(255 5% 96%);
+		--bg-component: hsl(255 5% 90%);
+		--bg-highlight: hsl(255 5% 82%);
 
-		--text-main: hsl(0 0% 5%);
-		--text-sub: hsl(0 0% 30%);
+		/* Text stays highly legible, but subtly matches the theme */
+		--text-main: hsl(255 10% 10%);
+		--text-sub: hsl(255 5% 35%);
 
-		--border-color: hsl(0 0% 60%);
+		--border-color: hsl(255 5% 75%);
 
 		--accent-light: hsl(255 86% 63%);
 		--accent-dark: hsl(256 100% 87%);
@@ -55,17 +57,19 @@
 
 	/* Override: Dark Mode */
 	.dark {
-		--bg-main: hsl(0 0% 0%);
-		--bg-component: hsl(0 0% 15%);
-		--bg-highlight: hsl(0 0% 25%);
+		/* OLED FIX: Lightness bumped from 0% to 4% */
+		--bg-main: hsl(255 10% 5%);
+		--bg-component: hsl(255 10% 10%);
+		--bg-highlight: hsl(255 10% 16%);
 
-		--text-main: hsl(0 0% 95%);
-		--text-sub: hsl(0 0% 70%);
+		/* Text remains perfectly contrasted */
+		--text-main: hsl(255 10% 92%);
+		--text-sub: hsl(255 10% 70%);
 
-		--border-color: hsl(0 0% 35%);
+		--border-color: hsl(255 10% 20%);
 
-		--accent-light: hsl(255 86% 63%);
-		--accent-dark: hsl(256 100% 87%);
+		--accent-light: hsl(256 100% 87%);
+		--accent-dark: hsl(255 86% 63%);
 	}
 }
 
@@ -87,4 +91,10 @@
 
 ::view-transition-new(root) {
 	z-index: 2;
+}
+
+/* Target the root html tag */
+/* for smooth scrolling to the section of the links  */
+html {
+	scroll-behavior: smooth;
 }
