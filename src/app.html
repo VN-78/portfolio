@@ -2,6 +2,19 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<script>
+			// This runs immediately, before the page is painted.
+			try {
+				const theme = localStorage.getItem('theme');
+				const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+				if (theme === 'dark' || (!theme && prefersDark)) {
+					document.documentElement.classList.add('dark');
+				}
+			} catch (e) {
+				// Failsafe in case localStorage is blocked by user privacy settings
+			}
+		</script>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="text-scale" content="scale" />
 		%sveltekit.head%
