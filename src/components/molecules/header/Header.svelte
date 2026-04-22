@@ -108,7 +108,7 @@
 				>
 				</span>
 				About
-			</a>    
+			</a>
 
 			<a
 				href="#projects"
@@ -152,20 +152,31 @@
 
 <nav
 	class="
-        fixed right-0 bottom-0 left-0 z-50 flex h-14 items-center justify-around
+        fixed right-0 bottom-0 left-0 z-50 flex h-16 items-center justify-around
         border-t border-border-subtle bg-surface-component
         md:hidden
     "
 >
 	<a
 		href="#home"
-		class="flex h-full w-full flex-col items-center justify-center text-content-main transition-colors hover:text-accent-secondary"
+		class="flex h-full w-full flex-col items-center justify-center transition-colors hover:text-accent-secondary
+        {activeSection === 'home' ? 'text-content-main' : 'text-content-sub'}"
 	>
 		Home
 	</a>
+
+	<a
+		href="#projects"
+		class="flex h-full w-full flex-col items-center justify-center transition-colors hover:text-accent-secondary
+        {activeSection === 'projects' ? 'text-content-main' : 'text-content-sub'}"
+	>
+		Projects
+	</a>
+
 	<a
 		href="#about"
-		class="flex h-full w-full flex-col items-center justify-center text-content-sub transition-colors hover:text-content-main"
+		class="flex h-full w-full flex-col items-center justify-center transition-colors hover:text-accent-secondary
+        {activeSection === 'about' ? 'text-content-main' : 'text-content-sub'}"
 	>
 		About
 	</a>
