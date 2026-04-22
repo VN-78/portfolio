@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { HouseIcon, InfoIcon, PanelsTopLeftIcon } from '@lucide/svelte';
 	import ThemeToggle from '../../atoms/switchs/theme-toogle/ThemeToggle.svelte';
 
 	let scrollY = $state(0);
@@ -162,15 +163,8 @@
 		class="flex h-full w-full flex-col items-center justify-center transition-colors hover:text-accent-secondary
         {activeSection === 'home' ? 'text-content-main' : 'text-content-sub'}"
 	>
+		<HouseIcon />
 		Home
-	</a>
-
-	<a
-		href="#projects"
-		class="flex h-full w-full flex-col items-center justify-center transition-colors hover:text-accent-secondary
-        {activeSection === 'projects' ? 'text-content-main' : 'text-content-sub'}"
-	>
-		Projects
 	</a>
 
 	<a
@@ -178,6 +172,16 @@
 		class="flex h-full w-full flex-col items-center justify-center transition-colors hover:text-accent-secondary
         {activeSection === 'about' ? 'text-content-main' : 'text-content-sub'}"
 	>
+		<InfoIcon />
 		About
+	</a>
+
+	<a
+		href="#projects"
+		class="flex h-full w-full flex-col items-center justify-center transition-colors hover:text-accent-secondary
+        {activeSection === 'projects' ? 'text-content-main' : 'text-content-sub'}"
+	>
+		<PanelsTopLeftIcon />
+		Projects
 	</a>
 </nav>
