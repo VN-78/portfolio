@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Switch } from 'bits-ui';
 	import { onMount } from 'svelte';
+	import { MoonIcon, SunIcon } from '@lucide/svelte';
 	import { toggleThemeWithTransition } from '$lib/utils/theme-view-transition';
 
 	// initiating state
@@ -62,7 +63,7 @@
 		checked={isDark}
 		onCheckedChange={handleCheckedChange}
 		class="
-        peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full 
+        peer inline-flex h-8 w-16 shrink-0 cursor-pointer items-center rounded-full 
         border-2 border-transparent transition-colors duration-200 ease-in-out
         focus-visible:ring-2 focus-visible:ring-border-subtle focus-visible:ring-offset-2 focus-visible:outline-none
         
@@ -71,11 +72,34 @@
 	>
 		<Switch.Thumb
 			class="
-            pointer-events-none block h-5 w-5 rounded-full bg-surface-main 
-            shadow-lg ring-0 transition-transform duration-200 ease-in-out
+            group pointer-events-none relative flex h-7 w-7 
+            items-center justify-center rounded-full bg-surface-main shadow-lg 
+			ring-0 transition-transform duration-200 ease-in-out
             
-            data-[state=checked]:translate-x-5 
-            data-[state=unchecked]:translate-x-0"
-		></Switch.Thumb>
+            data-[state=checked]:translate-x-8 
+            data-[state=unchecked]:translate-x-px"
+		>
+			<SunIcon
+				class="
+				absolute flex scale-100 rotate-0 items-center
+				justify-center text-content-main opacity-100 transition-all duration-300
+				
+				group-data-[state=checked]:scale-50 
+				group-data-[state=checked]:-rotate-90 
+				group-data-[state=checked]:opacity-0
+				"
+			/>
+
+			<MoonIcon
+				class="
+				absolute flex scale-50 rotate-90 items-center
+				justify-center text-content-main opacity-0 transition-all duration-300
+				
+				group-data-[state=checked]:scale-100 
+				group-data-[state=checked]:rotate-0 
+				group-data-[state=checked]:opacity-100
+				"
+			/>
+		</Switch.Thumb>
 	</Switch.Root>
 </div>
