@@ -95,8 +95,8 @@
 					class="group flex items-center gap-2 transition-colors hover:text-accent-primary
                 {activeSection === 'home' ? 'text-content-main' : 'text-content-sub'}"
 				>
+					<!-- #TODO: convert these dots to underline with animations 		 -->
 
-				#TODO: convert these dots to underline with animations 
 					<span
 						class="h-2 w-2 rounded-full bg-accent-primary transition-transform duration-300
                     {activeSection === 'home' ? 'w-2 scale-100' : 'w-0 scale-0'}"
