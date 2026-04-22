@@ -1,3 +1,70 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+/* Instructs Tailwind to apply 'dark:' utilities when the .dark class is on a parent */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Map our dynamic CSS variables to Tailwind utility classes */
+@theme {
+	/* --- SURFACES (Backgrounds) --- */
+	/* Use for: The main <body> background, full-page wrappers. */
+	--color-surface-main: var(--bg-main);
+
+	/* Use for: Elevated containers. Cards, modals, sidebars, navigation bars, dropdown menus. */
+	--color-surface-component: var(--bg-component);
+
+	/* Use for: Interactive states on surfaces. Hover states on cards, active list items, the un-checked switch track. */
+	--color-surface-highlight: var(--bg-highlight);
+
+	/* --- CONTENT (Text & Icons) --- */
+	/* Use for: High-contrast typography. Headings (h1-h6), primary paragraph text, active icons. */
+	--color-content-main: var(--text-main);
+
+	/* Use for: Lower-contrast typography. Muted text, timestamps, subtitles, input placeholders, disabled states. */
+	--color-content-sub: var(--text-sub);
+
+	/* --- BORDERS --- */
+	/* Use for: Separating elements. Dividers (<hr>), card borders, input field outlines, table row borders. */
+	--color-border-subtle: var(--border-color);
+
+	/* --- ACCENTS (Brand & Action) --- */
+	/* Use for: Primary calls to action. The 'Save' button, active tabs, the checked switch track, checkboxes. */
+	--color-accent-primary: var(--accent-light);
+
+	/* Use for: Accent interactions. Hover states on primary buttons, active text links, focus rings for accessibility. */
+	--color-accent-secondary: var(--accent-dark);
+}
+
+/* 2. Define the exact HSL values for Light and Dark modes */
+@layer base {
+	/* Default: Light Mode (Inverted values) */
+	:root {
+		--bg-main: hsl(0 0% 95%);
+		--bg-component: hsl(0 0% 85%);
+		--bg-highlight: hsl(0 0% 75%);
+
+		--text-main: hsl(0 0% 5%);
+		--text-sub: hsl(0 0% 30%);
+
+		--border-color: hsl(0 0% 60%);
+
+		--accent-light: hsl(255 86% 63%);
+		--accent-dark: hsl(256 100% 87%);
+	}
+
+	/* Override: Dark Mode */
+	.dark {
+		--bg-main: hsl(0 0% 0%);
+		--bg-component: hsl(0 0% 15%);
+		--bg-highlight: hsl(0 0% 25%);
+
+		--text-main: hsl(0 0% 95%);
+		--text-sub: hsl(0 0% 70%);
+
+		--border-color: hsl(0 0% 35%);
+
+		--accent-light: hsl(255 86% 63%);
+		--accent-dark: hsl(256 100% 87%);
+	}
+}
