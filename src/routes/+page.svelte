@@ -20,7 +20,7 @@
 		class="min-h-screen bg-surface-main px-4 pt-14 pb-14 text-content-main md:px-8 md:pt-24 md:pb-24"
 	>
 		<div
-			in:fade={{ delay: 400, duration: 600, easing: quartOut }}
+			in:fade={{ delay: 600, duration: 800, easing: quartOut }}
 			class="mx-auto w-full max-w-7xl md:px-6 lg:px-8"
 		>
 			<section
