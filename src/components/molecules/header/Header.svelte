@@ -74,16 +74,11 @@
 				? 'border-border-subtle bg-surface-component/80 shadow-lg backdrop-blur-md'
 				: 'border-transparent bg-surface-main shadow-none'}
         "
-			// border-border-subtle  shadow-lg backdrop-blur-3xl
 			style="
-            width: {navWidth}%; 
-            margin-top: {navTop}px; 
+            width: {navWidth}%;
+            margin-top: {navTop}px;
             border-radius: {navRadius}px;
-
-            
         "
-			//  border-bottom-width: {1 - scrollProgress}px;  border-width: {scrollProgress}px;
-			//  background-color: color-mix(in srgb, var(--bg-component) {50 + 30 * scrollProgress}%, transparent);
 		>
 			<div class="flex flex-1 items-center justify-start">
 				<span class="text-xl font-bold text-content-main">VN</span>
@@ -95,7 +90,9 @@
 					class="group flex items-center gap-2 transition-colors hover:text-accent-primary
                 {activeSection === 'home' ? 'text-content-main' : 'text-content-sub'}"
 				>
-					<!-- #TODO: convert these dots to underline with animations 		 -->
+					<!-- #TODO: convert these dots to underline with animations -->
+
+					<!-- #TODO: add hover popup animation on the selection links -->
 
 					<span
 						class="h-2 w-2 rounded-full bg-accent-primary transition-transform duration-300
