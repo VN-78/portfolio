@@ -1,6 +1,21 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+@import '@fontsource/space-grotesk/700.css'; /* For bold headings */
+@import '@fontsource/inter/400.css'; /* Regular body text */
+@import '@fontsource/inter/500.css'; /* Medium body text */
+@import '@fontsource/jetbrains-mono/400.css'; /* For tech keywords */
+
+@theme {
+	/* Override default sans with Inter, fallback to standard sans */
+	--font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+	/* Create a custom utility for headings */
+	--font-heading: 'Space Grotesk', sans-serif;
+
+	/* Override default mono */
+	--font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
 
 /* Instructs Tailwind to apply 'dark:' utilities when the .dark class is on a parent */
 @custom-variant dark (&:where(.dark, .dark *));
@@ -97,4 +112,40 @@
 /* for smooth scrolling to the section of the links  */
 html {
 	scroll-behavior: smooth;
+}
+
+/* 1. Ensure the document can naturally grow tall */
+html.lenis,
+html.lenis body {
+	height: auto;
+}
+
+/* 2. Fix the scroll behavior conflict */
+.lenis.lenis-smooth {
+	scroll-behavior: auto !important;
+}
+
+/* 3. Handle when Lenis is paused (e.g., modals open) */
+.lenis.lenis-stopped {
+	overflow: hidden;
+}
+
+/* 4. Prevent iframes from stealing the mouse wheel */
+.lenis.lenis-smooth iframe {
+	pointer-events: none;
+}
+
+@theme {
+	/*for icon carosole;*/
+
+	@keyframes scroll {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	--animate-scroll: scroll 20s linear infinite;
 }
