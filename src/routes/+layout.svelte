@@ -2,7 +2,10 @@
 	import './layout.css';
 	import logo from '$lib/assets/images/vn78-icon.png';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+	import { dev } from '$app/environment';
+	import { injectAnalytics } from '@vercel/analytics/sveltekit';
 
+	injectAnalytics({ mode: dev ? 'development' : 'production' });
 	injectSpeedInsights();
 
 	// Configure lenis
