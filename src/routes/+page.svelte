@@ -4,6 +4,7 @@
 	import { fade, fly } from 'svelte/transition';
 	import { quartOut } from 'svelte/easing';
 	import IconMarquee from '../components/molecules/marquee/IconMarquee.svelte';
+	import About from '../components/organisms/about/about.svelte';
 
 	let isMounted = $state(false);
 
@@ -83,17 +84,13 @@
 				</div>
 			</section>
 
-			<div class="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 pb-12 border-t border-border-subtle ">
+			<div
+				class="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 border-y border-border-subtle"
+			>
 				<IconMarquee />
 			</div>
 
-			<section
-				id="about"
-				class="flex min-h-screen flex-col justify-center border-b border-border-subtle py-20 md:px-8"
-			>
-				<h2 class="mb-4 font-heading text-4xl font-bold text-content-main">About Me</h2>
-				<p class="text-content-sub">This is the second section.</p>
-			</section>
+			<About />
 
 			<section id="projects" class="flex min-h-screen flex-col justify-center py-20 md:px-8">
 				<h2 class="mb-4 font-heading text-4xl font-bold text-content-main">Selected Projects</h2>
