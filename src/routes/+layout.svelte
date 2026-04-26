@@ -5,6 +5,9 @@
 	// Configure lenis
 	import { onMount, type Snippet } from 'svelte';
 	import Lenis from 'lenis';
+	
+	// import the scroll state store
+	import { scrollState } from '$lib/stores/scroll.svelte';
 
 	onMount(() => {
 		// Initialize Lenis
@@ -23,6 +26,9 @@
 			// IMPORTANT: Allows Mac trackpads to trigger the native rubber-band
 			overscroll: true
 		});
+		
+		// Assignt the active instance to the global store
+		scrollState.lenis = lenis;
 
 		// Set up the Animation Frame Loop to keep Lenis ticking
 		function raf(time: number) {
@@ -36,6 +42,8 @@
 		// to prevent memory leaks if navigating between SPA routes.
 		return () => {
 			lenis.destroy();
+			// clean up the scroll state store when the app unmounts
+			scrollState.lenis = null;
 		};
 	});
 
