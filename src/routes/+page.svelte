@@ -8,6 +8,7 @@
 	import About from '../components/organisms/about/About.svelte';
 	import Projects from '../components/organisms/projects/Projects.svelte';
 	import Contact from '../components/organisms/contact/Contact.svelte';
+	import Footer from '../components/organisms/footer/Footer.svelte';
 
 	let isMounted = $state(false);
 
@@ -16,13 +17,29 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Vishwanath | Portfolio</title>
+
+	<meta
+		name="description"
+		content="Portfolio of Vishwanath, a Software Engineer specializing in React, TypeScript, Svelte, and Data Visualization."
+	/>
+
+	<meta property="og:title" content="Vishwanath | Software Engineer" />
+	<meta
+		property="og:description"
+		content="View my latest projects, frontend UI components, and Python data pipelines."
+	/>
+	<meta property="og:type" content="website" />
+</svelte:head>
+
 {#if isMounted}
 	<div in:fly={{ y: -40, duration: 600, easing: quartOut }}>
 		<Header />
 	</div>
 
 	<main
-		class="min-h-screen bg-surface-main px-4 pt-14 pb-14 text-content-main md:px-8 md:pt-24 md:pb-24"
+		class="min-h-screen bg-surface-main px-4 pt-14 pb-2 text-content-main md:px-8 md:pt-24 md:pb-6"
 	>
 		<div
 			in:fade={{ delay: 600, duration: 800, easing: quartOut }}
@@ -45,6 +62,10 @@
 
 			<div class="border-b border-border-subtle py-20">
 				<Contact />
+			</div>
+
+			<div>
+				<Footer />
 			</div>
 		</div>
 	</main>
