@@ -12,7 +12,7 @@
 	let dialogIsSuccess = $state(true);
 
 	// Isolate the regex string so the Svelte HTML parser doesn't choke on it
-	const emailPattern = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$';
+	const emailPattern = '^[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}$';
 </script>
 
 <section id="contact" class="mx-auto w-full max-w-3xl py-24">
