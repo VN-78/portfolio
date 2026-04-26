@@ -52,12 +52,12 @@
 </script>
 
 <div
-	class="marquee-container relative w-full overflow-hidden py-12 "
+	class="marquee-container relative w-full overflow-hidden py-2 "
 	onpointerenter={slowDown}
 	onpointerleave={speedUp}
 	role="marquee"
 >
-	<div bind:this={trackElement} class="marquee-track flex w-max mb-12  gap-16 will-change-transform">
+	<div bind:this={trackElement} class="marquee-track flex w-max my-12  gap-16 will-change-transform">
 		{#each duplicatedTech as tech, i (`${tech.name}-${i}`)}
 			<div
 				class="group relative flex flex-col items-center justify-center transition-all duration-300 hover:scale-125"
@@ -72,7 +72,7 @@
 
 				<!-- Name Pop-up Highlight (Bottom) -->
 				<span
-					class="pointer-events-none absolute -bottom-8 z-20 rounded-md bg-accent-secondary/25 px-2.5 py-1.5 font-mono text-[11px] font-bold tracking-tight whitespace-nowrap text-content-main opacity-0 transition-all duration-300 group-hover:-bottom-10 group-hover:opacity-100"
+					class="pointer-events-none absolute -bottom-6 z-20 rounded-md bg-accent-secondary/25 px-2.5 py-1.5 font-mono text-[11px] font-bold tracking-tight whitespace-nowrap text-content-main opacity-0 transition-all duration-300 group-hover:-bottom-9 group-hover:opacity-100"
 				>
 					{tech.name.toUpperCase()}
 				</span>
