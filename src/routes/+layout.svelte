@@ -1,11 +1,14 @@
 <script lang="ts">
 	import './layout.css';
 	import logo from '$lib/assets/images/vn78-icon.png';
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+
+	injectSpeedInsights();
 
 	// Configure lenis
 	import { onMount, type Snippet } from 'svelte';
 	import Lenis from 'lenis';
-	
+
 	// import the scroll state store
 	import { scrollState } from '$lib/stores/scroll.svelte';
 
@@ -26,7 +29,7 @@
 			// IMPORTANT: Allows Mac trackpads to trigger the native rubber-band
 			overscroll: true
 		});
-		
+
 		// Assignt the active instance to the global store
 		scrollState.lenis = lenis;
 
