@@ -38,7 +38,7 @@
 						<span class="text-accent-primary"> data-driven experiences.</span>
 					</h1>
 
-					<p class="mb-10 max-w-lg text-base leading-relaxed text-content-sub md:text-lg">
+					<p class="mb-10 max-w-lg text-base leading-relaxed text-content-sub md:text-xl">
 						Pragmatic developer focused on
 
 						<strong

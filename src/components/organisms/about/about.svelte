@@ -80,10 +80,10 @@
 <section
 	bind:this={aboutSection}
 	id="about"
-	class="grid min-h-[80vh] grid-cols-1 items-center gap-12 border-b border-border-subtle lg:grid-cols-12"
+	class="grid min-h-[80vh] grid-cols-1 items-center md:gap-12 border-b border-border-subtle lg:grid-cols-12"
 >
 	<div
-		class="bg-surface-alt relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-full border border-border-subtle lg:col-span-4"
+		class="bg-surface-alt relative mx-auto aspect-square w-1/2  md:w-full max-w-md overflow-hidden rounded-full border border-border-subtle lg:col-span-4"
 	>
 		<div class="absolute inset-0 flex items-center justify-center text-content-sub">
 			<Avatar />
@@ -91,9 +91,9 @@
 	</div>
 
 	<div class="flex flex-col justify-center lg:col-span-8">
-		<h2 class="mb-8 font-heading text-4xl font-bold text-content-main md:text-6xl">About Me</h2>
+		<h2 class="mb-18 font-heading text-4xl font-bold md:text-left  text-center text-content-main md:text-6xl">About me 💬</h2>
 
-		<p class="font-sans text-xl leading-relaxed md:text-3xl">
+		<p class="font-sans text-xl leading-relaxed md:text-4xl">
 			{#each wordsArray as word, index (`${index}-${word}`)}
 				{@const isHighlighted = index / wordsArray.length <= highlightProgress}
 
