@@ -15,7 +15,13 @@
 			gestureOrientation: 'vertical',
 			smoothWheel: true,
 			wheelMultiplier: 1,
-			touchMultiplier: 2
+			touchMultiplier: 2,
+			// IMPORTANT: Let the OS handle mobile touch.
+			// This brings back the native Android/iOS edge stretch.
+			syncTouch: false,
+
+			// IMPORTANT: Allows Mac trackpads to trigger the native rubber-band
+			overscroll: true
 		});
 
 		// Set up the Animation Frame Loop to keep Lenis ticking
