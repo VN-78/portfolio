@@ -1,15 +1,28 @@
 # sv
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+# Vishwa | Personal Portfolio 🚀
 
-## Creating a project
+A high-performance, responsive personal portfolio built to showcase software engineering projects, UI components, and data visualization work. Engineered for maximum speed with a perfect 100 Lighthouse score across Performance, Accessibility, Best Practices, and SEO.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## ✨ Key Features
 
-```sh
-# create a new project
-npx sv create my-app
-```
+* **Custom SMTP Backend:** Form submissions are routed securely through a custom `+page.server.ts` endpoint using **Nodemailer**, complete with frontend Regex validation and programmatic Bits UI dialogs.
+* **Automated Asset Pipeline:** Integrated `@sveltejs/enhanced-img` to automatically compress, resize, and convert raw images into next-gen WebP/AVIF formats at build time to prevent Cumulative Layout Shift (CLS).
+* **Fluid Typography & Layout:** Built using **Tailwind CSS** with a CSS Grid "Bento Box" architecture for responsive project displays.
+* **Hardware-Accelerated Scrolling:** Implemented **Lenis** for buttery-smooth, 60fps scroll hijacking without jank.
+
+## 🛠️ Tech Stack
+
+* **Framework:** SvelteKit (SSR & API Routes)
+* **Language:** TypeScript
+* **Styling:** Tailwind CSS
+* **Components:** Bits UI (Headless components)
+* **Runtime/Package Manager:** Bun
+* **Email Client:** Nodemailer
+
+## 💻 Local Development
+
+To run this project locally, you will need [Bun](https://bun.sh/) installed on your machine.
 
 To recreate this project with the same configuration:
 
@@ -23,10 +36,10 @@ bun x sv@0.15.1 create --template minimal --types ts --add prettier eslint tailw
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
 ```sh
-npm run dev
+bun run dev
 
 # or start the server and open the app in a new browser tab
-npm run dev -- --open
+bun run dev -- --open
 ```
 
 ## Building
@@ -34,7 +47,7 @@ npm run dev -- --open
 To create a production version of your app:
 
 ```sh
-npm run build
+bun run build
 ```
 
 You can preview the production build with `npm run preview`.
