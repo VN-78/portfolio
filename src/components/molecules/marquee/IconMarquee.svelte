@@ -87,8 +87,8 @@
 		animation: entrance 1s ease-out forwards;
 
 		/* The Mask Magic */
-		-webkit-mask-image: linear-gradient(to right, transparent, black 25%, black 85%, transparent);
-		mask-image: linear-gradient(to right, transparent, black 25%, black 85%, transparent);
+		-webkit-mask-image: linear-gradient(to right, transparent, black 25%, black 75%, transparent);
+		mask-image: linear-gradient(to right, transparent, black 25%, black 75%, transparent);
 	}
 
 	.marquee-track {
