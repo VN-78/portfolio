@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Icon from '../../atoms/icons/icons.svelte';
+	import Icon from '../../atoms/icons/Icons.svelte';
 	import { iconData } from '../../../lib/assets/icons';
 
 	// 1. We need a reference to the DOM element running the animation
@@ -52,12 +52,12 @@
 </script>
 
 <div
-	class="marquee-container relative w-full overflow-hidden py-2 "
+	class="marquee-container relative w-full overflow-hidden py-2"
 	onpointerenter={slowDown}
 	onpointerleave={speedUp}
 	role="marquee"
 >
-	<div bind:this={trackElement} class="marquee-track flex w-max my-12  gap-16 will-change-transform">
+	<div bind:this={trackElement} class="marquee-track my-12 flex w-max gap-16 will-change-transform">
 		{#each duplicatedTech as tech, i (`${tech.name}-${i}`)}
 			<div
 				class="group relative flex flex-col items-center justify-center transition-all duration-300 hover:scale-125"
@@ -67,7 +67,7 @@
 					paths={tech.paths}
 					viewBox={tech.viewBox}
 					colored={true}
-					class="h-12 w-12 transition-all duration-300 group-hover:drop-shadow-[0_0_15px_rgba(var(bg-black),0.5)]"
+					class="h-12 w-12 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)] transition-all duration-300 group-hover:drop-shadow-[0_0_15px_rgba(14,165,233,0.6)] dark:drop-shadow-[0_1px_2px_rgba(255,255,255,0.2)]"
 				/>
 
 				<!-- Name Pop-up Highlight (Bottom) -->
