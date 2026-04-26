@@ -1,5 +1,10 @@
 <script lang="ts">
-	import { HouseIcon, InfoIcon, PanelsTopLeftIcon } from '@lucide/svelte';
+	import {
+		HouseIcon,
+		PanelsTopLeftIcon,
+		SendIcon,
+		UserRoundPenIcon
+	} from '@lucide/svelte';
 	import ThemeToggle from '../../atoms/switchs/theme-toogle/ThemeToggle.svelte';
 
 	let scrollY = $state(0);
@@ -11,7 +16,7 @@
 
 	// 2. Map the progress to our specific layout values
 	// Width: 100% down to 60%
-	let navWidth = $derived(100 - 40 * scrollProgress);
+	let navWidth = $derived(100 - 45 * scrollProgress);
 	// Top Margin: 0px down to 16px
 	let navTop = $derived(16 * scrollProgress);
 	// Border Radius: 0px up to 9999px (pill shape)
@@ -58,19 +63,23 @@
 
 <svelte:window bind:scrollY />
 
+<!-- TODO: convert these dots to underline with animations -->
+
+<!-- TODO: add hover popup animation on the selection links -->
+
 <header
 	class="
-        pointer-events-none fixed top-0 left-0 z-50 w-full
-        max-md:hidden
+        pointer-events-none fixed top-0 left-0 z-50 w-full max-md:hidden
+        md:px-8
     "
 >
-	<div class="mx-auto flex w-full max-w-7xl items-center justify-between px-4 md:px-6 lg:px-8">
+	<div class="max-w-8xl mx-auto flex w-full items-center justify-between px-4 md:px-24 lg:px-32">
 		<nav
 			class="
             pointer-events-auto mx-auto flex h-14 items-center
             overflow-hidden px-8
-			transition-all duration-75 ease-linear
-			{isScrolled
+            transition-all duration-75 ease-linear
+            {isScrolled
 				? 'border-border-subtle bg-surface-component/80 shadow-lg backdrop-blur-md'
 				: 'border-transparent bg-surface-main shadow-none'}
         "
@@ -81,19 +90,15 @@
         "
 		>
 			<div class="flex flex-1 items-center justify-start">
-				<span class="text-xl font-bold text-content-main">VN</span>
+				<span class="font-heading text-xl font-bold tracking-tight text-content-main">VN</span>
 			</div>
 
 			<div class="flex shrink-0 items-center justify-center gap-6">
 				<a
 					href="#home"
-					class="group flex items-center gap-2 transition-colors hover:text-accent-primary
+					class="group flex items-center gap-2 font-mono text-sm transition-colors hover:text-accent-primary
                 {activeSection === 'home' ? 'text-content-main' : 'text-content-sub'}"
 				>
-					<!-- #TODO: convert these dots to underline with animations -->
-
-					<!-- #TODO: add hover popup animation on the selection links -->
-
 					<span
 						class="h-2 w-2 rounded-full bg-accent-primary transition-transform duration-300
                     {activeSection === 'home' ? 'w-2 scale-100' : 'w-0 scale-0'}"
@@ -104,7 +109,7 @@
 
 				<a
 					href="#about"
-					class="flex items-center gap-2 transition-colors hover:text-accent-primary
+					class="flex items-center gap-2 font-mono text-sm transition-colors hover:text-accent-primary
                 {activeSection === 'about' ? 'text-content-main' : 'text-content-sub'}"
 				>
 					<span
@@ -114,10 +119,9 @@
 					</span>
 					About
 				</a>
-
 				<a
 					href="#projects"
-					class="flex items-center gap-2 transition-colors hover:text-accent-primary
+					class="flex items-center gap-2 font-mono text-sm transition-colors hover:text-accent-primary
                 {activeSection === 'projects' ? 'text-content-main' : 'text-content-sub'}"
 				>
 					<span
@@ -126,6 +130,19 @@
 					>
 					</span>
 					Projects
+				</a>
+
+				<a
+					href="#contact"
+					class="flex items-center gap-2 font-mono text-sm transition-colors hover:text-accent-primary
+                {activeSection === 'contact' ? 'text-content-main' : 'text-content-sub'}"
+				>
+					<span
+						class="h-2 w-2 rounded-full bg-accent-primary transition-transform duration-300
+                    {activeSection === 'contact' ? 'w-2 scale-100' : 'w-0 scale-0'}"
+					>
+					</span>
+					Contact
 				</a>
 			</div>
 
@@ -147,7 +164,7 @@
             shadow-lg backdrop-blur-md"
 	>
 		<div class="flex flex-1 items-center justify-start">
-			<span class="text-xl font-bold text-content-main">VN</span>
+			<span class="font-heading text-xl font-bold tracking-tight text-content-main">VN</span>
 		</div>
 
 		<div class="flex flex-1 items-center justify-end">
@@ -158,14 +175,14 @@
 
 <nav
 	class="
-        fixed right-0 bottom-0 left-0 z-50 flex h-16 items-center justify-around
-        border-t border-border-subtle bg-surface-component
+        fixed right-0 bottom-0 left-0 z-50 flex h-16 items-center justify-around border-t
+        border-border-subtle bg-surface-component text-center
         md:hidden
     "
 >
 	<a
 		href="#home"
-		class="flex h-full w-full flex-col items-center justify-center transition-colors hover:text-accent-secondary
+		class="flex h-full w-full flex-col items-center justify-center gap-1 font-mono text-xs transition-colors hover:text-accent-secondary
         {activeSection === 'home' ? 'text-content-main' : 'text-content-sub'}"
 	>
 		<HouseIcon />
@@ -174,19 +191,28 @@
 
 	<a
 		href="#about"
-		class="flex h-full w-full flex-col items-center justify-center transition-colors hover:text-accent-secondary
+		class="flex h-full w-full flex-col items-center justify-center gap-1 font-mono text-xs transition-colors hover:text-accent-secondary
         {activeSection === 'about' ? 'text-content-main' : 'text-content-sub'}"
 	>
-		<InfoIcon />
+		<UserRoundPenIcon />
 		About
 	</a>
 
 	<a
 		href="#projects"
-		class="flex h-full w-full flex-col items-center justify-center transition-colors hover:text-accent-secondary
+		class="flex h-full w-full flex-col items-center justify-center gap-1 font-mono text-xs transition-colors hover:text-accent-secondary
         {activeSection === 'projects' ? 'text-content-main' : 'text-content-sub'}"
 	>
 		<PanelsTopLeftIcon />
 		Projects
+	</a>
+
+	<a
+		href="#contact"
+		class="flex h-full w-full flex-col items-center justify-center gap-1 font-mono text-xs transition-colors hover:text-accent-secondary
+        {activeSection === 'projects' ? 'text-content-main' : 'text-content-sub'}"
+	>
+		<SendIcon />
+		Contact
 	</a>
 </nav>
