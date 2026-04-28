@@ -1,5 +1,5 @@
-<script lang="ts" >
-	import  cat from '../../../lib/assets/images/sprite-base-2.png'
+<script lang="ts">
+	import Cat from '../cat/Cat.svelte';
 </script>
 
 <section
@@ -56,7 +56,7 @@
 		<div
 			class="bg-surface-alt flex aspect-square w-64 items-center justify-center rounded-2xl border border-border-subtle text-content-sub shadow-sm md:w-80 lg:w-96"
 		>
-			<img   src={cat} alt="avatar"/>
+			<Cat />
 		</div>
 	</div>
 </section>
