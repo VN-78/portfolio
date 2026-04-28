@@ -1,3 +1,7 @@
+<script lang="ts" >
+	import  cat from '../../../lib/assets/images/sprite-base-2.png'
+</script>
+
 <section
 	id="home"
 	class="grid min-h-[75vh] grid-cols-1 items-center gap-12 py-12 md:px-8 md:py-12 lg:grid-cols-12"
@@ -52,7 +56,7 @@
 		<div
 			class="bg-surface-alt flex aspect-square w-64 items-center justify-center rounded-2xl border border-border-subtle text-content-sub shadow-sm md:w-80 lg:w-96"
 		>
-			Avatar Space
+			<img   src={cat} alt="avatar"/>
 		</div>
 	</div>
 </section>
