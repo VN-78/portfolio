@@ -86,7 +86,7 @@
 			: 'opacity-100'}"
 	>
 		<div
-			class="absolute top-[21%] left-[18%] flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-[#e8cb87]"
+			class="absolute top-[21%] left-[18%] flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-[#f5d693]"
 		>
 			<img
 				src={pupil}
@@ -97,7 +97,7 @@
 		</div>
 
 		<div
-			class="absolute top-[21%] right-[41%] flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-[#e8cb87]"
+			class="absolute top-[21%] right-[41%] flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-[#f5d693]"
 		>
 			<img
 				src={pupil}
