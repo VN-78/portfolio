@@ -57,7 +57,7 @@
 	onpointerleave={speedUp}
 	role="marquee"
 >
-	<div bind:this={trackElement} class="marquee-track my-12 flex w-max gap-16 will-change-transform">
+	<div bind:this={trackElement} class="marquee-track my-12 flex w-max gap-16 pr-16 will-change-transform">
 		{#each duplicatedTech as tech, i (`${tech.name}-${i}`)}
 			<div
 				class="group relative flex flex-col items-center justify-center transition-all duration-300 hover:scale-125"

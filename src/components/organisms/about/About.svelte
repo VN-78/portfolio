@@ -53,11 +53,11 @@
 		// =========================================================
 		// 0.85 means the animation starts when the top of the About
 		// section is 85% of the way down the screen.
-		const startTrigger = innerHeight * 0.45;
+		const startTrigger = innerHeight * 0.25;
 
 		// 0.40 means the animation finishes when the top of the About
 		// section reaches 40% of the way down the screen.
-		const endTrigger = innerHeight * 0.01;
+		const endTrigger = innerHeight * -0.10;
 		// =========================================================
 
 		// 3. The Mapping Math
@@ -98,9 +98,9 @@
 				{@const isHighlighted = index / wordsArray.length <= highlightProgress}
 
 				<span
-					class="inline-block transition-colors duration-300 {isHighlighted
-						? 'text-content-main'
-						: 'text-content-sub opacity-40'}"
+					class="inline-block mx-[0.05em] origin-bottom transition-all duration-300 will-change-transform {isHighlighted
+						? '-translate-y-1 scale-105 text-content-main text-shadow-sm'
+						: 'translate-y-0 scale-100 text-content-sub opacity-40'}"
 				>
 					{word}&nbsp;
 				</span>
