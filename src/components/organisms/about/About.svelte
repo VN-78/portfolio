@@ -53,7 +53,7 @@
 		// =========================================================
 		// 0.85 means the animation starts when the top of the About
 		// section is 85% of the way down the screen.
-		const startTrigger = innerHeight * 0.25;
+		const startTrigger = innerHeight * 0.45;
 
 		// 0.40 means the animation finishes when the top of the About
 		// section reaches 40% of the way down the screen.
