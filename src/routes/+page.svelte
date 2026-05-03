@@ -9,6 +9,7 @@
 	import Projects from '../components/organisms/projects/Projects.svelte';
 	import Contact from '../components/organisms/contact/Contact.svelte';
 	import Footer from '../components/organisms/footer/Footer.svelte';
+	import Cat from '../components/organisms/cat/Cat.svelte';
 
 	let isMounted = $state(false);
 
@@ -52,7 +53,7 @@
 				<IconMarquee />
 			</div>
 
-			<div class="border-b border-border-subtle pb-24">
+			<div class="border-b border-border-subtle pt-20 pb-24">
 				<About />
 			</div>
 
@@ -69,6 +70,11 @@
 			</div>
 		</div>
 	</main>
+	<div class="pointer-events-none" >
+		<div in:fly={{ y: 40, duration: 1500, delay: 1000 }} class=" pointer-events-auto  fixed md:right-1 right-0  bottom-16  md:bottom-0 z-100">
+			<Cat />
+		</div>
+	</div>
 {/if}
 
 <style lang="postcss">
