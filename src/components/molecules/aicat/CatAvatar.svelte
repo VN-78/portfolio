@@ -13,6 +13,8 @@
 	let isMounted = $state(false);
 	let isTalking = $state(false);
 
+	let isTouchDevice = $state(false);
+
 	// for tracking mouse position
 	let mouseX = $state(0);
 	let mouseY = $state(0);
@@ -58,9 +60,19 @@
 
 	onMount(() => {
 		isMounted = true;
+
+		// Check if the primary input is 'coarse' (touch)
+		const mediaQuery = window.matchMedia('(pointer: coarse)');
+		isTouchDevice = mediaQuery.matches;
+
+		// Optional: Listen for changes (e.g., plugging in a mouse to a tablet)
+		const handler = (e: MediaQueryListEvent) => (isTouchDevice = e.matches);
+		mediaQuery.addEventListener('change', handler);
+
 		blink();
 		// CLEANUP FUNCTION: This fires when the component unmounts, killing the loop.
 		return () => {
+			mediaQuery.removeEventListener('change', handler);
 			isMounted = false;
 		};
 	});
@@ -72,10 +84,13 @@
 		// 1. We assume the agent is looking from the bottom right or center.
 		// To make it simple, we use the browser's innerWidth/innerHeight.
 		// If window is undefined (SSR), return 0.
-		if (typeof window === 'undefined') return { x: 0, y: 0 };
+		// SSR Guard & Mobile/Touch Guard
+		if (typeof window === 'undefined' || isTouchDevice) {
+			return { x: 0, y: 0 };
+		}
 
-		const centerX = window.innerWidth / 1.5;
-		const centerY = window.innerHeight / 2;
+		const centerX = window.innerWidth / 1.05;
+		const centerY = window.innerHeight / 1.05;
 
 		// 2. Calculate the distance between the mouse and the center
 		const deltaX = mouseX - centerX;
@@ -109,16 +124,16 @@
 <!-- Added cursor-pointer and an onclick handler to toggle the chat -->
 <!-- Added a slight hover scale to make it feel interactive -->
 <button
-    class="relative h-48 w-48 cursor-pointer select-none outline-none transition-transform sm:h-64 sm:w-64"
-    onclick={() => (isChatOpen = !isChatOpen)}
-    aria-label="Toggle AI Chat"
-    aria-expanded={isChatOpen}
+	class="relative h-20 w-20 cursor-pointer transition-transform outline-none select-none sm:h-32 sm:w-32"
+	onclick={() => (isChatOpen = !isChatOpen)}
+	aria-label="Toggle AI Chat"
+	aria-expanded={isChatOpen}
 >
 	<!-- "Click Me" Indicator (Only shows when chat is closed) -->
 	{#if !isChatOpen}
 		<div
 			transition:fade={{ duration: 150 }}
-			class="absolute -top-10 left-1/2 z-50 flex -translate-x-1/2 items-center justify-center rounded-full  px-2 py-0.5 text-5xl font-bold  "
+			class="absolute -top-10 left-1/2 z-50 flex -translate-x-1/2 items-center justify-center rounded-full px-2 py-0.5 text-4xl font-bold"
 			style="image-rendering: pixelated;"
 		>
 			💬
@@ -132,23 +147,23 @@
 	>
 		<!-- Left Eye -->
 		<div
-			class="absolute top-[21%] left-[18%] flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-[#f5d693]"
+			class="absolute top-[18%] left-[41%] flex h-4 w-4 items-center justify-center overflow-hidden rounded-full bg-[#f5d693] md:top-[20%] md:left-[43%] md:h-6 md:w-6"
 		>
 			<enhanced:img
 				src={pupil}
 				alt=""
-				class="h-6 w-6"
+				class="h-2 w-2 md:h-3 md:w-3"
 				style="transform: translate({pupilOffset().x}px, {pupilOffset().y}px);"
 			/>
 		</div>
 		<!-- Right Eye -->
 		<div
-			class="absolute top-[21%] right-[41%] flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-[#f5d693]"
+			class="absolute top-[18%] right-[65%] flex h-4 w-4 items-center justify-center overflow-hidden rounded-full bg-[#f5d693] md:top-[20%] md:right-[65%] md:h-6 md:w-6"
 		>
 			<enhanced:img
 				src={pupil}
 				alt=""
-				class="h-6 w-6"
+				class="h-2 w-2 md:h-3 md:w-3"
 				style="transform: translate({pupilOffset().x}px, {pupilOffset().y}px);"
 			/>
 		</div>
@@ -174,3 +189,11 @@
 			: 'opacity-0'}"
 	/>
 </button>
+
+<style>
+	enhanced\:img {
+		will-change: transform;
+		/* This tells the GPU to keep the pupils in their own layer
+           for smoother 60fps tracking on Arch/Linux systems and Chrome. */
+	}
+</style>
