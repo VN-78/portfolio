@@ -27,21 +27,19 @@
 		} else {
 			root.classList.remove('dark');
 		}
+
+		// Sync isDark state if the theme is changed externally (e.g. by AI)
+		const observer = new MutationObserver(() => {
+			isDark = root.classList.contains('dark');
+		});
+
+		observer.observe(root, {
+			attributes: true,
+			attributeFilter: ['class']
+		});
+
+		return () => observer.disconnect();
 	});
-
-	//  3. Sync side effects automatically whenever `isDark` changes
-	// (** no need since we are using the view transiton api to create the transition the initial load should be controled by the function **)
-	// $effect(() => {
-	// 	const root = document.documentElement; // targets the <html> tag
-
-	// 	if (isDark) {
-	// 		root.classList.add('dark');
-	// 		localStorage.setItem('theme', 'dark');
-	// 	} else {
-	// 		root.classList.remove('dark');
-	// 		localStorage.setItem('theme', 'light');
-	// 	}
-	// });
 
 	function handleCheckedChange(checked: boolean) {
 		isDark = checked;
