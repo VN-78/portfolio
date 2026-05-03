@@ -97,6 +97,22 @@
 		chat.sendMessage({ text: input });
 		input = '';
 	}
+
+	// --- Slash Commands ---
+	const commands = [{ cmd: '/theme', desc: 'Change the visual theme (dark or light)' }];
+
+	let inputRef = $state<HTMLInputElement | null>(null);
+
+	let filteredCommands = $derived(
+		input.startsWith('/') && !input.includes(' ')
+			? commands.filter((c) => c.cmd.toLowerCase().startsWith(input.toLowerCase()))
+			: []
+	);
+
+	function selectCommand(cmd: string) {
+		input = cmd + ' ';
+		inputRef?.focus();
+	}
 </script>
 
 <div
@@ -104,11 +120,15 @@
 	aria-label="Interactive Chat Terminal"
 	transition:scale={{ duration: 400, start: 0.1, easing: sineInOut }}
 	class="
-        fixed inset-0 z-50 flex h-dvh w-full origin-bottom flex-col rounded-none
+        /* Desktop: Vertical Box */ fixed inset-0 z-50 flex
+        h-dvh w-full origin-bottom flex-col rounded-none border-none bg-surface-component/70 p-4 font-sans
 
-        border-none bg-surface-component/70 p-4 font-sans text-sm shadow-none backdrop-blur-xl transition-all duration-300
-
-        sm:absolute sm:inset-auto sm:bottom-full sm:mb-4 sm:h-80 sm:w-[90vw] sm:max-w-md sm:rounded-2xl sm:border sm:border-border-subtle sm:bg-surface-component sm:shadow-2xl sm:backdrop-blur-md sm:hover:border-accent-primary/50 sm:hover:shadow-[0_0_15px_rgba(var(--color-accent-primary),0.2)]
+        text-sm shadow-none backdrop-blur-xl transition-all duration-300
+        sm:absolute sm:inset-auto sm:right-0 sm:bottom-full sm:mb-4
+        sm:h-125 sm:w-85 sm:max-w-85
+        sm:rounded-2xl sm:border sm:border-border-subtle sm:bg-surface-component
+        sm:shadow-2xl sm:backdrop-blur-md
+        sm:hover:border-accent-primary/50
     "
 >
 	<!-- Header -->
@@ -179,8 +199,35 @@
 
 	<!-- Input Form -->
 	<!-- Added padding bottom to prevent iOS home bar from overlapping the input -->
-	<form onsubmit={handleChatSubmit} class="mt-auto flex gap-2 pb-2 sm:pb-0">
+	<form onsubmit={handleChatSubmit} class="relative mt-auto flex gap-2 pb-2 sm:pb-0">
+		<!-- Slash Commands Menu -->
+		{#if filteredCommands.length > 0}
+			<div
+				class="absolute bottom-full mb-2 w-full rounded-xl border border-border-subtle bg-surface-component p-1 shadow-2xl backdrop-blur-md"
+				transition:scale={{ duration: 200, start: 0.95, easing: sineInOut }}
+			>
+				<div class="px-2 py-1.5 text-[10px] font-bold tracking-wider text-content-sub uppercase">
+					Commands
+				</div>
+				<div class="space-y-0.5">
+					{#each filteredCommands as command (command.cmd)}
+						<button
+							type="button"
+							onclick={() => selectCommand(command.cmd)}
+							class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-left transition-all hover:bg-accent-primary/10 hover:text-accent-primary group"
+						>
+							<span class="font-mono font-bold text-accent-primary">{command.cmd}</span>
+							<span class="text-xs text-content-sub group-hover:text-accent-primary/70"
+								>{command.desc}</span
+							>
+						</button>
+					{/each}
+				</div>
+			</div>
+		{/if}
+
 		<input
+			bind:this={inputRef}
 			class="flex-1 rounded-xl border border-border-subtle bg-surface-highlight px-4 py-3 text-base text-content-main transition-colors outline-none placeholder:text-content-sub focus:border-accent-primary focus:bg-surface-component sm:rounded-lg sm:px-3 sm:py-2 sm:text-sm"
 			bind:value={input}
 			placeholder="Message..."
