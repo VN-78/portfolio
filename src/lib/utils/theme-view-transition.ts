@@ -8,6 +8,7 @@ export function toggleThemeWithTransition(isDark: boolean, event: MouseEvent | n
 
     const applyTheme = () => {
         const root = document.documentElement;
+        console.log(`Applying theme: ${isDark ? 'dark' : 'light'}`);
         if (isDark) {
             root.classList.add('dark');
             localStorage.setItem('theme', 'dark');
