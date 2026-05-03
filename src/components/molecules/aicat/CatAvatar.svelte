@@ -2,10 +2,10 @@
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 
-	import cat from '../../../lib/assets/images/cat-transparent-eyes.png';
-	import catClosed from '../../../lib/assets/images/cat-eyes-closed.png';
-	import pupil from '../../../lib/assets/images/cat-eye.png';
-	import catTalking from '../../../lib/assets/images/cat-talking-final.png';
+	import cat from '../../../lib/assets/images/cat-transparent-eyes.png?enhanced';
+	import catClosed from '../../../lib/assets/images/cat-eyes-closed.png?enhanced';
+	import pupil from '../../../lib/assets/images/cat-eye.png?enhanced';
+	import catTalking from '../../../lib/assets/images/cat-talking-final.png?enhanced';
 
 	let { status, isChatOpen = $bindable() }: { status: string; isChatOpen: boolean } = $props();
 
@@ -24,7 +24,7 @@
 		let interval: ReturnType<typeof setInterval>;
 
 		// isLoading is gone. We use the new chat.status property!
-		if (status === 'streaming' || status === 'submitted') {
+		if (status === 'streaming') {
 			interval = setInterval(() => {
 				isTalking = !isTalking;
 			}, 150);
@@ -109,17 +109,19 @@
 <!-- Added cursor-pointer and an onclick handler to toggle the chat -->
 <!-- Added a slight hover scale to make it feel interactive -->
 <button
-	class="relative h-48 w-48 cursor-pointer rounded-full select-none focus:ring focus:ring-blue-500/30 focus:outline-none sm:h-64 sm:w-64"
-	onclick={() => (isChatOpen = !isChatOpen)}
-	aria-label="Toggle AI Chat"
+    class="relative h-48 w-48 cursor-pointer select-none outline-none transition-transform sm:h-64 sm:w-64"
+    onclick={() => (isChatOpen = !isChatOpen)}
+    aria-label="Toggle AI Chat"
+    aria-expanded={isChatOpen}
 >
 	<!-- "Click Me" Indicator (Only shows when chat is closed) -->
 	{#if !isChatOpen}
 		<div
-			transition:fade
-			class="absolute -top-4 left-1/2 z-50 -translate-x-1/2 animate-bounce rounded-full bg-blue-600 px-3 py-1 text-xs font-bold whitespace-nowrap text-white shadow-lg"
+			transition:fade={{ duration: 150 }}
+			class="absolute -top-10 left-1/2 z-50 flex -translate-x-1/2 items-center justify-center rounded-full  px-2 py-0.5 text-5xl font-bold  "
+			style="image-rendering: pixelated;"
 		>
-			Chat with me!
+			💬
 		</div>
 	{/if}
 
@@ -132,7 +134,7 @@
 		<div
 			class="absolute top-[21%] left-[18%] flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-[#f5d693]"
 		>
-			<img
+			<enhanced:img
 				src={pupil}
 				alt=""
 				class="h-6 w-6"
@@ -143,7 +145,7 @@
 		<div
 			class="absolute top-[21%] right-[41%] flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-[#f5d693]"
 		>
-			<img
+			<enhanced:img
 				src={pupil}
 				alt=""
 				class="h-6 w-6"
@@ -152,22 +154,22 @@
 		</div>
 	</div>
 
-	<img
+	<enhanced:img
 		src={cat}
 		alt="Cat Open"
 		class="pointer-events-none absolute inset-0 z-20 h-full w-full object-contain"
 	/>
-	<img
+	<enhanced:img
 		src={catClosed}
 		alt="Cat Closed"
 		class="pointer-events-none absolute inset-0 z-30 h-full w-full object-contain transition-opacity duration-75 {isBlinking
 			? 'opacity-100'
 			: 'opacity-0'}"
 	/>
-	<img
+	<enhanced:img
 		src={catTalking}
 		alt="Cat Talking"
-		class="pointer-events-none absolute inset-0 z-40 h-full w-full object-contain transition-opacity duration-75 {isTalking
+		class="pointer-events-none absolute inset-0 z-40 h-full w-full object-contain transition-opacity duration-150 {isTalking
 			? 'opacity-100'
 			: 'opacity-0'}"
 	/>
