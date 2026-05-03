@@ -210,7 +210,7 @@
 	<a
 		href="#contact"
 		class="flex h-full w-full flex-col items-center justify-center gap-1 font-mono text-xs transition-colors hover:text-accent-secondary
-        {activeSection === 'projects' ? 'text-content-main' : 'text-content-sub'}"
+        {activeSection === 'contact' ? 'text-content-main' : 'text-content-sub'}"
 	>
 		<SendIcon />
 		Contact
