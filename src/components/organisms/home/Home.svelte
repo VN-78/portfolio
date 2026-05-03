@@ -1,6 +1,3 @@
-<script lang="ts">
-	import Cat from '../cat/Cat.svelte';
-</script>
 
 <section
 	id="home"
@@ -56,7 +53,7 @@
 		<div
 			class="bg-surface-alt flex aspect-square w-64 items-center justify-center rounded-2xl border border-border-subtle text-content-sub shadow-sm md:w-80 lg:w-96"
 		>
-			<Cat />
+			Avatar
 		</div>
 	</div>
 </section>
