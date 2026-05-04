@@ -24,3 +24,6 @@ vite.config.ts.timestamp-*
 
 # vs code settings
 .vscode
+
+# ai md files
+.md
