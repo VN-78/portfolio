@@ -47,9 +47,7 @@
 			class="max-w-8xl mx-auto w-full md:px-24 lg:px-32"
 		>
 			<Home />
-			<div
-				class="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 border-y border-border-subtle"
-			>
+			<div class="relative left-1/2 w-dvw -translate-x-1/2 border-y border-border-subtle">
 				<IconMarquee />
 			</div>
 
@@ -70,8 +68,11 @@
 			</div>
 		</div>
 	</main>
-	<div class="pointer-events-none" >
-		<div in:fly={{ y: 40, duration: 1500, delay: 1000 }} class=" pointer-events-auto  fixed md:right-1 right-0  bottom-16  md:bottom-0 z-100">
+	<div class="pointer-events-none">
+		<div
+			in:fly={{ y: 40, duration: 1500, delay: 1000 }}
+			class="cat-container pointer-events-auto fixed right-0 z-100 md:right-1"
+		>
 			<Cat />
 		</div>
 	</div>
@@ -79,4 +80,15 @@
 
 <style lang="postcss">
 	@reference "tailwindcss";
+
+	.cat-container {
+		/* Desktop default */
+		bottom: 0;
+
+		/* Mobile override */
+		@media (max-width: 767px) {
+			/* Position it 4rem (h-16) above the dynamic bottom of the screen */
+			bottom: calc(100vh - 100dvh + 4rem);
+		}
+	}
 </style>
