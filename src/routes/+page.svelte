@@ -88,7 +88,7 @@
 		/* Mobile override */
 		@media (max-width: 767px) {
 			/* Position it 4rem (h-16) above the dynamic bottom of the screen */
-			bottom: calc(100vh - 100dvh + 4rem);
+			bottom: calc(100vh - 100dvh + 1rem);
 		}
 	}
 </style>
