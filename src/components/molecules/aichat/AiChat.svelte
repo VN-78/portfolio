@@ -244,6 +244,11 @@
 </div>
 
 <style>
+	.custom-scrollbar {
+		scrollbar-width: thin;
+		scrollbar-color: var(--border-color) transparent;
+	}
+
 	.custom-scrollbar::-webkit-scrollbar {
 		width: 6px;
 	}
