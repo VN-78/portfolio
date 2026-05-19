@@ -72,6 +72,7 @@
 
 	/* Override: Dark Mode */
 	.dark {
+		color-scheme: dark;
 		/* OLED FIX: Lightness bumped from 0% to 4% */
 		--bg-main: hsl(255 10% 5%);
 		--bg-component: hsl(255 10% 10%);
@@ -112,6 +113,15 @@
 /* for smooth scrolling to the section of the links  */
 html {
 	scroll-behavior: smooth;
+	scrollbar-color: var(--border-color) var(--bg-main);
+	scrollbar-width: thin;
+	overflow-x: hidden;
+	background-color: var(--bg-main);
+}
+
+body {
+	background-color: var(--bg-main);
+	overflow-x: hidden;
 }
 
 /* 1. Ensure the document can naturally grow tall */
