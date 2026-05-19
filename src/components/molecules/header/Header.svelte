@@ -175,10 +175,11 @@
 
 <nav
 	class="
-        fixed right-0 bottom-0 left-0 z-50 flex h-16 items-center justify-around border-t
+        fixed right-0 left-0 z-50 flex h-16 items-center justify-around border-t
         border-border-subtle bg-surface-component text-center
         md:hidden
     "
+	style="top: calc(100dvh - 4rem);"
 >
 	<a
 		href="#home"
