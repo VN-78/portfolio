@@ -1,10 +1,5 @@
 <script lang="ts">
-	import {
-		HouseIcon,
-		PanelsTopLeftIcon,
-		SendIcon,
-		UserRoundPenIcon
-	} from '@lucide/svelte';
+	import { HouseIcon, PanelsTopLeftIcon, SendIcon, UserRoundPenIcon } from '@lucide/svelte';
 	import ThemeToggle from '../../atoms/switchs/theme-toogle/ThemeToggle.svelte';
 
 	let scrollY = $state(0);
@@ -76,9 +71,10 @@
 	<div class="max-w-8xl mx-auto flex w-full items-center justify-between px-4 md:px-24 lg:px-32">
 		<nav
 			class="
-            pointer-events-auto mx-auto flex h-14 items-center
-            overflow-hidden px-8
-            transition-all duration-75 ease-linear
+            pointer-events-auto mx-auto flex h-14 max-w-full
+            min-w-max items-center overflow-hidden
+            px-6 transition-all duration-75
+            ease-linear lg:px-8
             {isScrolled
 				? 'border-border-subtle bg-surface-component/80 shadow-lg backdrop-blur-md'
 				: 'border-transparent bg-surface-main shadow-none'}
@@ -89,11 +85,11 @@
             border-radius: {navRadius}px;
         "
 		>
-			<div class="flex flex-1 items-center justify-start">
+			<div class="flex flex-1 basis-0 pr-4 items-center justify-start">
 				<span class="font-heading text-xl font-bold tracking-tight text-content-main">VN</span>
 			</div>
 
-			<div class="flex shrink-0 items-center justify-center gap-6">
+			<div class="flex shrink-0 items-center justify-center gap-4 lg:gap-6">
 				<a
 					href="#home"
 					class="group flex items-center gap-2 font-mono text-sm transition-colors hover:text-accent-primary
@@ -146,7 +142,7 @@
 				</a>
 			</div>
 
-			<div class="flex flex-1 items-center justify-end">
+			<div class="flex flex-1 basis-0 pl-4 items-center justify-end">
 				<ThemeToggle />
 			</div>
 		</nav>
@@ -167,7 +163,7 @@
 			<span class="font-heading text-xl font-bold tracking-tight text-content-main">VN</span>
 		</div>
 
-		<div class="flex flex-1 items-center justify-end">
+		<div class="flex flex-1 basis-0 items-center justify-end">
 			<ThemeToggle />
 		</div>
 	</nav>
