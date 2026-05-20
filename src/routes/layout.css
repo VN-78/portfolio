@@ -90,23 +90,35 @@
 }
 
 /* =========================================
-	View Transitions API: Theme Ripple Setup
+      View Transitions API: Theme Ripple Setup
    ========================================= */
-
-/* 1. Kill the default browser animation */
-::view-transition-old(root),
-::view-transition-new(root) {
-	animation: none;
-	mix-blend-mode: normal;
+html,
+body {
+	min-height: 100vh;
+	margin: 0;
+	overflow-x: hidden;
 }
 
-/* 2. Enforce strict Z-index stacking */
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation: none !important;
+	mix-blend-mode: normal !important;
+	display: block;
+}
+
 ::view-transition-old(root) {
 	z-index: 1;
+	opacity: 1 !important;
 }
 
 ::view-transition-new(root) {
 	z-index: 2;
+	/* GECKO FIX: Pre-clamp the layer to 0px so it can't flash on Frame 1 */
+	clip-path: circle(0px at var(--click-x, 50%) var(--click-y, 50%));
+}
+
+::view-transition {
+	pointer-events: none;
 }
 
 /* Target the root html tag */
@@ -120,7 +132,7 @@ html {
 }
 
 body {
-	background-color: var(--bg-main);
+	/*background-color: var(--bg-main);*/
 	overflow-x: hidden;
 }
 
@@ -159,3 +171,31 @@ html.lenis body {
 
 	--animate-scroll: scroll 20s linear infinite;
 }
+
+@layer base {
+	html {
+		@apply bg-surface-main text-content-main;
+		/* Ensure the HTML tag fills the screen even if content is short */
+		min-height: 100vh;
+	}
+}
+
+/* 🧪 DIAGNOSTIC TRACER DYES 🧪 */
+
+/* 1. Paint the deepest background (The Canvas) Neon Green */
+/*html {
+	background-color: #00ff00 !important;
+}*/
+
+/* 2. Paint the Body element Hot Pink */
+/*body {
+	background-color: #ff00ff !important;
+}*/
+
+/* 3. Paint the View Transition "Old" Snapshot Bright Cyan */
+/*::view-transition-old(root) {
+	background-color: #00ffff !important;
+	opacity: 1 !important;
+	animation: none !important;
+	display: block;
+}*/
