@@ -72,7 +72,7 @@
 			if (anchor) lenis.scrollTo(anchor, { immediate: true });
 		}, 100);
 
-		// Standard requestAnimationFrame loop
+  		// Standard requestAnimationFrame loop
 		let rafId: number;
 		function raf(time: number) {
 			lenis.raf(time);
