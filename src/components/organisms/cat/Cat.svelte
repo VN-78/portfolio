@@ -15,7 +15,7 @@
 			if (toolCall.toolName === 'getTheme') {
 				const isDark = document.documentElement.classList.contains('dark');
 				const theme = isDark ? 'dark' : 'light';
-				
+
 				chat.addToolResult({
 					toolCallId: toolCall.toolCallId,
 					tool: 'getTheme',
@@ -28,18 +28,24 @@
 			if (toolCall.toolName === 'changeTheme') {
 				// Use ToolCallPart which is exported, and cast the input specifically
 				const input = (toolCall as ToolCallPart).input as { theme: 'dark' | 'light' } | undefined;
-				
+
 				if (!input?.theme) return;
 
-				const isDark = input.theme === 'dark';
+				// now this is handled by the mode-watcher library.
+				// const isDark = input.theme === 'dark';
+
+				// If the AI says "dark" and we are already "dark", just acknowledge and skip the ripple.
+				const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
 
 				// Create a synthetic event at the center of the screen for the animation
-				const fauxEvent = new MouseEvent('click', {
-					clientX: window.innerWidth / 2,
-					clientY: window.innerHeight / 2
-				});
+				if (currentTheme !== input.theme) {
+					const fauxEvent = new MouseEvent('click', {
+						clientX: window.innerWidth / 2,
+						clientY: window.innerHeight / 2
+					});
 
-				toggleThemeWithTransition(isDark, fauxEvent);
+					toggleThemeWithTransition(fauxEvent, input.theme);
+				}
 
 				// Manually add the tool result so the AI can continue the conversation
 				chat.addToolResult({
@@ -56,7 +62,7 @@
 	let isChatOpen = $state(false);
 </script>
 
-<div class="relative mt-24 flex flex-col items-center  ">
+<div class="relative mt-24 flex flex-col items-center">
 	{#if isChatOpen}
 		<!-- Pass the entire chat instance and bind the open state so the 'X' button can close it -->
 		<AiChat
