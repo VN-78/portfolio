@@ -1,50 +1,53 @@
 <script lang="ts">
 	import { Switch } from 'bits-ui';
-	import { onMount } from 'svelte';
+	// import { onMount } from 'svelte';
 	import { MoonIcon, SunIcon } from '@lucide/svelte';
 	import { toggleThemeWithTransition } from '$lib/utils/theme-view-transition';
+	import { mode } from 'mode-watcher';
 
+	// this entire dark mode management is replaced by the mode-watcher-lib
 	// initiating state
-	let isDark = $state(false);
+	// let isDark = $state(false);
 
 	// we need to capture the click event to know where the ripple starts
 	let lastClickEvent: MouseEvent | null = null;
 
-	onMount(() => {
-		const storedTheme = localStorage.getItem('theme');
-		const root = document.documentElement;
+	// onMount(() => {
+	// 	const storedTheme = localStorage.getItem('theme');
+	// 	const root = document.documentElement;
 
-		if (storedTheme) {
-			isDark = storedTheme === 'dark';
-		} else {
-			// Fallback to system OS preference
-			isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-		}
+	// 	if (storedTheme) {
+	// 		isDark = storedTheme === 'dark';
+	// 	} else {
+	// 		// Fallback to system OS preference
+	// 		isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+	// 	}
 
-		// Apply initial theme without transition
-		if (isDark) {
-			root.classList.add('dark');
-		} else {
-			root.classList.remove('dark');
-		}
+	// 	// Apply initial theme without transition
+	// 	if (isDark) {
+	// 		root.classList.add('dark');
+	// 	} else {
+	// 		root.classList.remove('dark');
+	// 	}
 
-		// Sync isDark state if the theme is changed externally (e.g. by AI)
-		const observer = new MutationObserver(() => {
-			isDark = root.classList.contains('dark');
-		});
+	// 	// Sync isDark state if the theme is changed externally (e.g. by AI)
+	// 	const observer = new MutationObserver(() => {
+	// 		isDark = root.classList.contains('dark');
+	// 	});
 
-		observer.observe(root, {
-			attributes: true,
-			attributeFilter: ['class']
-		});
+	// 	observer.observe(root, {
+	// 		attributes: true,
+	// 		attributeFilter: ['class']
+	// 	});
 
-		return () => observer.disconnect();
-	});
+	// 	return () => observer.disconnect();
+	// });
 
 	function handleCheckedChange(checked: boolean) {
-		isDark = checked;
+		// isDark = checked;
+		const targetTheme = checked ? 'dark' : 'light';
 		// Trigger our external transition function
-		toggleThemeWithTransition(checked, lastClickEvent);
+		toggleThemeWithTransition(lastClickEvent, targetTheme);
 
 		// Reset the event so keyboard toggles don't use old coordinates
 		lastClickEvent = null;
@@ -61,7 +64,7 @@
 		name="theme-toggle"
 		value="theme-toggle"
 		aria-label="Toggle theme"
-		checked={isDark}
+		checked={mode.current === 'dark'}
 		onCheckedChange={handleCheckedChange}
 		class="
         peer inline-flex h-8 w-16 shrink-0 cursor-pointer items-center rounded-full
