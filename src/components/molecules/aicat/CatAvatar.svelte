@@ -101,7 +101,7 @@
 
 		// 4. Calculate actual distance, but scale it down so it feels subtle
 		// Divide by a large number (like 100) to dampen the movement
-		const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY) / 50;
+		const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY) / 200;
 
 		// 5. Clamp the distance so it never exceeds our maxRadius
 		const clampedDistance = Math.min(distance, maxRadius);
