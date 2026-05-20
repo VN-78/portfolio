@@ -4,6 +4,7 @@
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import { dev } from '$app/environment';
 	import { injectAnalytics } from '@vercel/analytics/sveltekit';
+	import { ModeWatcher } from 'mode-watcher';
 
 	injectAnalytics({ mode: dev ? 'development' : 'production' });
 	injectSpeedInsights();
@@ -57,4 +58,5 @@
 </script>
 
 <svelte:head><link rel="icon" href={logo} /></svelte:head>
+<ModeWatcher />
 {@render children()}
